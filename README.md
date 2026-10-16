@@ -29,3 +29,34 @@ uv sync
 复现项目环境：uv sync
 在项目环境中运行：uv run
 临时兼容 pip 操作：uv pip
+
+## 第一天动手任务
+
+项目已实现：
+
+- `app/config.py`：统一配置类、环境变量读取和配置校验。
+- `app/logging_config.py`：日志初始化和常见敏感字段脱敏。
+- `app/exceptions.py`：应用、配置和资源异常体系。
+- `app/main.py`：命令行入口和 FastAPI 健康检查入口。
+- `app/utils/timer.py`：支持同步、异步函数的耗时装饰器。
+- `app/utils/test_resource.py`：保证资源释放的上下文管理器。
+
+运行命令行演示：
+
+```powershell
+uv run python -m app.main
+# 或使用 pyproject.toml 中注册的命令
+uv run docpilot-agent
+```
+
+运行测试：
+
+```powershell
+uv run python -m unittest discover -s tests -v
+```
+
+启动 FastAPI 并访问 `http://127.0.0.1:8000/health`：
+
+```powershell
+uv run uvicorn app.main:app --reload
+```
